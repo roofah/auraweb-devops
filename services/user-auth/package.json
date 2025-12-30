@@ -1,5 +1,5 @@
 {
-    "name": "user-communication-service",
+    "name": "user-auth",
     "version": "1.0.0",
     "description": "Unified User & Communication Service (Auth + Notification)",
     "main": "src/index.js",
