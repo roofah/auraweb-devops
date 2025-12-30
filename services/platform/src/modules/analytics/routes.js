@@ -3,6 +3,11 @@ const router = express.Router();
 const pool = require('../../lib/db');
 const logger = require('../../lib/logger');
 
+// GET /api/analytics
+router.get('/', (req, res) => {
+    res.json({ message: 'Analytics Service Operational', endpoints: ['/dashboard', '/events', '/sales', '/users'] });
+});
+
 // GET /api/analytics/dashboard
 router.get('/dashboard', async (req, res) => {
     try {
