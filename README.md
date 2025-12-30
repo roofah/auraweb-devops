@@ -75,38 +75,16 @@ The application implements a modern **Event-Driven Microservices Architecture**,
 | **Platform** | `3005` | Analytics, File Storage (S3/MinIO), Admin Ops | Node.js, AWS SDK |
 | **Inventory** | `3006` | Real-time stock tracking and reservations | Node.js, PostgreSQL |
 
-### Diagram (Production)
+### Architecture Diagrams
 
-```mermaid
-graph TD
-    User([User]) -->|HTTPS| Ingress[Nginx Ingress]
-    Ingress --> Gateway[API Gateway]
+#### 1. Local Development (Docker Compose)
+![Local Docker Compose Architecture](docs/local-docker-compose-diagram.png)
 
-    subgraph "Core Services"
-        Gateway --> Auth[User & Auth Service]
-        Gateway --> Catalog[Catalog Service]
-        Gateway --> Cart[Shopping Service]
-        Gateway --> Order[Order & Payment Service]
-    end
+#### 2. Local Kubernetes (Envoy Gateway)
+![Local Kubernetes Architecture](docs/local-kubernetes-diagram.png)
 
-    subgraph "Support Services"
-        Gateway --> Fulfillment[Fulfillment Service]
-        Gateway --> Inventory[Inventory Service]
-        Gateway --> Platform[Platform Service]
-    end
-
-    Catalog -.->|Cache/Search| Redis[(Redis Stack)]
-    Cart -.->|Session/Cart| Redis
-    
-    Order -.->|Stripe| StripeAPI((Stripe))
-    Order -.->|Events| RabbitMQ[RabbitMQ]
-    Catalog -.->|Events| RabbitMQ
-
-    Auth --> DB[(PostgreSQL)]
-    Catalog --> DB
-    Order --> DB
-    Inventory --> DB
-```
+#### 3. Production Cloud Architecture (AWS EKS)
+![Production Cloud Architecture](docs/production-kubenetes-diagram.png)
 
 ---
 
