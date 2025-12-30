@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../base
-  - ingress.yaml
+  - gateway.yaml
 
 namespace: auraweb-prod
 
