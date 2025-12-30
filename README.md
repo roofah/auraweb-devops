@@ -48,11 +48,15 @@ A production-ready, cloud-native full-stack application demonstrating modern Dev
 
 ## 📸 Screenshots
 
-*(Place your application screenshots here to showcase the UI)*
+### User Interface
 
-| **Frontend Dashboard** | **Admin Panel** |
+| **Home Page** | **Products Page** |
 |:---:|:---:|
-| ![Frontend Dashboard Placeholder](https://via.placeholder.com/600x400?text=Frontend+Dashboard+Screenshot) | ![Admin Panel Placeholder](https://via.placeholder.com/600x400?text=Admin+Panel+Screenshot) |
+| ![Home Page](docs/home-page.PNG) | ![Products Page](docs/products-page.PNG) |
+
+| **Admin Dashboard** | **Admin Settings** |
+|:---:|:---:|
+| ![Admin Dashboard](docs/admin-page.PNG) | ![Admin Settings](docs/admin-setting.PNG) |
 
 ---
 
