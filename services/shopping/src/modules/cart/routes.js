@@ -3,6 +3,11 @@ const router = express.Router();
 const redisClient = require('../../lib/redis');
 const logger = require('../../lib/logger');
 
+// GET /api/cart (Info)
+router.get('/', (req, res) => {
+    res.json({ message: 'Cart Endpoint. Use GET /:userId to fetch a cart.' });
+});
+
 // POST /api/cart
 router.post('/', async (req, res) => {
     const { userId, productId, quantity, price, name, image_url } = req.body;

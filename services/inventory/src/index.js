@@ -129,19 +129,29 @@ app.get('/metrics', async (req, res) => {
     }
 });
 
-// API Routes
-app.get('/api/inventory/:productId', async (req, res) => {
-    const { productId } = req.params;
+// GET /api/inventory (List all - Simplified)
+app.get('/api/inventory', async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM inventory WHERE product_id = $1', [productId]);
-        if (result.rows.length === 0) {
-            return res.status(404).json({ error: 'Product not found in inventory' });
-        }
-        res.json(result.rows[0]);
+        const result = await pool.query('SELECT * FROM inventory LIMIT 50');
+        res.json(result.rows);
     } catch (err) {
-        logger.error('Error fetching inventory', err);
+        logger.error('Error fetching inventory list', err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+});
+
+// GET /api/inventory/:productId
+const { productId } = req.params;
+try {
+    const result = await pool.query('SELECT * FROM inventory WHERE product_id = $1', [productId]);
+    if (result.rows.length === 0) {
+        return res.status(404).json({ error: 'Product not found in inventory' });
+    }
+    res.json(result.rows[0]);
+} catch (err) {
+    logger.error('Error fetching inventory', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+}
 });
 
 app.post('/api/inventory/update', async (req, res) => {
