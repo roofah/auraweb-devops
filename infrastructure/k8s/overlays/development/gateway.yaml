@@ -132,7 +132,7 @@ spec:
         value: /api/cart
     - path:
         type: PathPrefix
-        value: /api/wishlists
+        value: /api/wishlist
     backendRefs:
     - name: shopping
       port: 3004
