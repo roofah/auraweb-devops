@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+  - ingress.yaml
+
+namespace: dev
+
+secretGenerator:
+  - name: app-secrets
+    literals:
+      - DB_NAME=auraweb_db
+      - DB_USER=auraweb_user
+      - DB_PASSWORD=dev_password_123
+      - JWT_SECRET=dev_secret_key_change_me
+      - JWT_REFRESH_SECRET=dev_refresh_secret_key_change_me

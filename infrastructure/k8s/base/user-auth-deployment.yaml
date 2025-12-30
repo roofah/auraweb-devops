@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-auth
+  template:
+    metadata:
+      labels:
+        app: user-auth
+    spec:
+      containers:
+      - name: user-auth
+        image: user-auth:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          value: "3000"
+        - name: DB_HOST
+          value: "postgres"
+        - name: REDIS_HOST
+          value: "redis"
+        - name: RABBITMQ_URL
+          value: "amqp://guest:guest@rabbitmq:5672"
+        envFrom:
+        - secretRef:
+            name: app-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-auth
+spec:
+  selector:
+    app: user-auth
+  ports:
+  - port: 3000
+    targetPort: 3000

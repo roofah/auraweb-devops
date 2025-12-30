@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-payment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-payment
+  template:
+    metadata:
+      labels:
+        app: order-payment
+    spec:
+      containers:
+      - name: order-payment
+        image: order-payment:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3002
+        env:
+        - name: PORT
+          value: "3002"
+        - name: DB_HOST
+          value: "postgres"
+        - name: RABBITMQ_URL
+          value: "amqp://guest:guest@rabbitmq:5672"
+        envFrom:
+        - secretRef:
+            name: app-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-payment
+spec:
+  selector:
+    app: order-payment
+  ports:
+  - port: 3002
+    targetPort: 3002

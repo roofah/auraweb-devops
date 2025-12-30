@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      containers:
+      - name: gateway
+        image: gateway:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+        - name: CATALOG_SERVICE_URL
+          value: "http://catalog:3001"
+        - name: ORDER_PAYMENT_SERVICE_URL
+          value: "http://order-payment:3002"
+        - name: FULFILLMENT_SERVICE_URL
+          value: "http://fulfillment:3003"
+        - name: SHOPPING_SERVICE_URL
+          value: "http://shopping:3004"
+        - name: PLATFORM_SERVICE_URL
+          value: "http://platform:3005"
+        - name: USER_COMM_SERVICE_URL
+          value: "http://user-auth:3000"
+        - name: INVENTORY_SERVICE_URL
+          value: "http://inventory-service:3006"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+spec:
+  selector:
+    app: gateway
+  ports:
+  - port: 8080
+    targetPort: 8080
