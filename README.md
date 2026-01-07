@@ -142,6 +142,7 @@ Complete documentation available in the `docs/` directory:
 Open Pull Requests are welcome. Please ensure they pass the pre-commit hooks and linting standards.
 
 **License**: MIT
+
 **Author / Maintained by**: Ravi Kumar Kushwaha
 
 
