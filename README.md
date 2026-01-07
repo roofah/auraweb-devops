@@ -141,7 +141,10 @@ Complete documentation available in the `docs/` directory:
 ## 🤝 Contributing
 Open Pull Requests are welcome. Please ensure they pass the pre-commit hooks and linting standards.
 
-**License**: MIT | **Author**: DevOps Expert
+**License**: MIT
+
+**Author / Maintained by**: Ravi Kumar Kushwaha
+
 
 --- 
 
