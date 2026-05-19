@@ -65,3 +65,9 @@ coverage/
 *.bak
 *.old
 .env.dev
+
+.terraform/
+*.exe
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
