@@ -71,3 +71,10 @@ coverage/
 *.tfstate
 *.tfstate.backup
 .terraform.lock.hcl
+
+# Terraform binaries
+terraform/terraform.exe
+terraform/.terraform/
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/.terraform.lock.hcl
